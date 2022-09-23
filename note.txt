@@ -1,0 +1,22 @@
+Nội dung app:
+
+
+Set up server app: 
+- Tạo file package.json: npm init
+
+- Cài nodemon: npm i nodemon --save-dev 
+// -dev là do ta chỉ dùng nodemon trong lúc dựng app,
+ giai đoạn production/ deploy thì không cần
+
+- Set up script khởi chạy: "start": "nodemon server.js",
+ 
+- thêm file launch.json: RUN => add configuration => NodeJS
+
+- Set up script launch.json auto restart debugger khi save file:
+"program": "${workspaceFolder}\\server.js",
+// setup restart debugger khi sửa đổ code trong lúc debug
+"restart": true,
+"runtimeExecutable": "nodemon",
+// setup restart nodemon khi sửa đổ code trong lúc debug
+"console": "integratedTerminal"
+
