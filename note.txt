@@ -1,6 +1,6 @@
 Nội dung app:
-- kết nối backend với frontend
-- truyền data giữa server và UI
+- cải thiện UI
+- đọc/ thêm object data vào file json trên server
 
 Set up server app: 
 - Tạo file package.json: npm init
