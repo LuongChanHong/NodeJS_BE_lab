@@ -1,4 +1,3 @@
-const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 
@@ -9,8 +8,8 @@ const userList = [
 ];
 
 router.post("/add-user", (request, response) => {
-  //   userList.push({ username: request.body });
-  console.log("userList:", request);
+  userList.push({ username: request.body.username });
+  console.log("userList:", userList);
 });
 
 exports.route = router;
