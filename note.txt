@@ -1,5 +1,6 @@
 Nội dung app:
-
+-
+-
 
 Set up server app: 
 - Tạo file package.json: npm init

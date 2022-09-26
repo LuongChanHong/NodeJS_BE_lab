@@ -5,6 +5,7 @@ const userList = [
   { username: "user 1" },
   { username: "user 2" },
   { username: "user 3" },
+  { username: "user 4" },
 ];
 
 router.post("/add-user", (request, response) => {
