@@ -19,6 +19,7 @@ const getProductFromFile = (callback) => {
 
 module.exports = class Product {
   constructor(title, description, price) {
+    this.id = Math.random().toString();
     this.title = title;
     this.imageUrl =
       "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg";
@@ -41,3 +42,5 @@ module.exports = class Product {
     getProductFromFile(callback);
   }
 };
+
+exports.productsFolder = productsFolder;

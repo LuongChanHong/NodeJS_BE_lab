@@ -1,6 +1,6 @@
 Nội dung app:
-- cải thiện UI
-- đọc/ thêm object data vào file json trên server
+- thêm các thành phần MVC cart
+- xử lí thêm item vào file cart.json
 
 Set up server app: 
 - Tạo file package.json: npm init
