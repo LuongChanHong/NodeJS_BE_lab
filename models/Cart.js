@@ -36,8 +36,6 @@ const addProductToCart = (id, price) => {
           "quantity:",
           cart.products[index].quantity
         );
-        console.log("==========================");
-
         fs.writeFile(cartFolder, JSON.stringify(cart), (error) => {
           if (error) {
             console.log("error:", error);
