@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
+const sequelize = require("./util/db");
 
 const app = express();
 
@@ -19,6 +20,11 @@ app.get("/test", (request, response, next) => {
   response.write("<h1>SERVER RUN</h1>");
 });
 
-const server = http.createServer(app);
+sequelize
+  .sync()
+  .then((result) => {
+    console.log("result:", result), server.listen(5000);
+  })
+  .catch((err) => console.log("err:", err));
 
-server.listen(5000);
+const server = http.createServer(app);

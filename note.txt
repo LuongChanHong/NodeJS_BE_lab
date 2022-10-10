@@ -1,5 +1,6 @@
 Nội dung app:
-- cài đặt mysql2, lấy dữ liệu từ mysql server
+- tạo lại product model bằng sequelize
+- kết nối mysql server bằng sequelize
 
 Set up server app: 
 - Tạo file package.json: npm init
