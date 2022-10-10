@@ -1,8 +1,10 @@
 const Product = require("../models/Product");
 exports.getProducts = (request, response) => {
-  Product.fetchAll((products) => {
-    response.send(products);
-  });
+  Product.fetchAll()
+    .then(([products, otherData]) => {
+      response.send(products);
+    })
+    .catch((err) => console.log("err:", err));
 };
 
 exports.postProduct = (request, response) => {

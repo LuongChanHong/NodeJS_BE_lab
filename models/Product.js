@@ -1,21 +1,21 @@
-const fs = require("fs");
-const path = require("path");
+const db = require("../util/db");
 
-const productsFolder = path.join(
-  path.dirname(require.main.filename),
-  "data",
-  "products.json"
-);
-
-const getProductFromFile = (callback) => {
-  fs.readFile(productsFolder, (error, fileContent) => {
-    if (!error) {
-      callback(JSON.parse(fileContent));
-    } else {
-      callback([]);
-    }
-  });
-};
+// const fs = require("fs");
+// const path = require("path");
+// const productsFolder = path.join(
+//   path.dirname(require.main.filename),
+//   "data",
+//   "products.json"
+// );
+// const getProductFromFile = (callback) => {
+//   fs.readFile(productsFolder, (error, fileContent) => {
+//     if (!error) {
+//       callback(JSON.parse(fileContent));
+//     } else {
+//       callback([]);
+//     }
+//   });
+// };
 
 module.exports = class Product {
   constructor(title, description, price) {
@@ -27,20 +27,28 @@ module.exports = class Product {
     this.price = price;
   }
 
-  add() {
-    getProductFromFile((products) => {
-      products.push(this);
-      fs.writeFile(productsFolder, JSON.stringify(products), (error) => {
-        if (error) {
-          console.log("error:", error);
-        }
-      });
-    });
+  add() {}
+
+  static findById(id) {
+    return db.execute("SELECT * FROM products WHERE products.id = ?", [id]);
   }
 
-  static fetchAll(callback) {
-    getProductFromFile(callback);
+  static fetchAll() {
+    return db.execute("SELECT * FROM products");
   }
+
+  // add() {
+  //   getProductFromFile((products) => {
+  //     products.push(this);
+  //     fs.writeFile(productsFolder, JSON.stringify(products), (error) => {
+  //       if (error) {
+  //         console.log("error:", error);
+  //       }
+  //     });
+  //   });
+  // }
+
+  // static fetchAll(callback) {
+  //   getProductFromFile(callback);
+  // }
 };
-
-exports.productsFolder = productsFolder;
