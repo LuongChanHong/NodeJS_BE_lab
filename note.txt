@@ -1,6 +1,5 @@
 Nội dung app:
-- thêm các thành phần MVC cart
-- xử lí thêm item vào file cart.json
+- cài đặt mysql2, lấy dữ liệu từ mysql server
 
 Set up server app: 
 - Tạo file package.json: npm init
