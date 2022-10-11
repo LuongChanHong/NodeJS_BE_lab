@@ -1,6 +1,5 @@
 Nội dung app:
-- tạo lại product model bằng sequelize
-- kết nối mysql server bằng sequelize
+
 
 Set up server app: 
 - Tạo file package.json: npm init
