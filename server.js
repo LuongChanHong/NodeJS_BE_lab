@@ -20,11 +20,11 @@ app.get("/test", (request, response, next) => {
   response.write("<h1>SERVER RUN</h1>");
 });
 
+// hàm sync sẽ tạo bảng dựa vào cái model đã được sequelize define. lưu trong database ta khai báo khi khởi tại instance sequelize
 sequelize
   .sync()
   .then((result) => {
-    console.log("result:", result), server.listen(5000);
+    // const server = http.createServer(app);
+    server.listen(5000);
   })
   .catch((err) => console.log("err:", err));
-
-const server = http.createServer(app);
