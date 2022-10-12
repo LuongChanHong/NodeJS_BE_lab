@@ -9,6 +9,6 @@ const productController = require("../controllers/product");
 // });
 
 router.get("/get-product", productController.getProducts);
-router.post("/add-product", productController.postProduct);
+router.post("/add-product", productController.postAddProduct);
 
 exports.route = router;

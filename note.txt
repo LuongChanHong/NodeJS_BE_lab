@@ -1,5 +1,6 @@
 Nội dung app:
-
+- tạo model Product bằng sequelize
+- thêm product vào database
 
 Set up server app: 
 - Tạo file package.json: npm init

@@ -24,7 +24,7 @@ app.get("/test", (request, response, next) => {
 sequelize
   .sync()
   .then((result) => {
-    // const server = http.createServer(app);
+    const server = http.createServer(app);
     server.listen(5000);
   })
   .catch((err) => console.log("err:", err));
