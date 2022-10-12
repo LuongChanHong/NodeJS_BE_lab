@@ -2,9 +2,14 @@ const Product = require("../models/Product");
 exports.getProducts = (request, response) => {
   Product.findAll()
     .then((data) => {
-      const result = [];
-      data.forEach((item) => result.push(item.dataValues));
-      response.send(result);
+      if (data) {
+        const result = [];
+        data.forEach((item) => result.push(item.dataValues));
+        response.send(result);
+      } else {
+        response.statusMessage = "database is empty";
+        response.status(404).end();
+      }
     })
     .catch((err) => console.log("err:", err));
 };
