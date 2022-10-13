@@ -55,4 +55,23 @@ exports.postEditProduct = (request, response) => {
   Product.update({ ...postProduct }, { where: { id: postProduct.id } }).catch(
     (err) => console.log("err:", err)
   );
+
+  // const prodId = req.body.productId;
+  // const updatedTitle = req.body.title;
+  // const updatedPrice = req.body.price;
+  // const updatedImageUrl = req.body.imageUrl;
+  // const updatedDesc = req.body.description;
+  // Product.findById(prodId)
+  //   .then((product) => {
+  //     product.title = updatedTitle;
+  //     product.price = updatedPrice;
+  //     product.description = updatedDesc;
+  //     product.imageUrl = updatedImageUrl;
+  //     return product.save();
+  //   })
+  //   .then((result) => {
+  //     console.log("UPDATED PRODUCT!");
+  //     res.redirect("/admin/products");
+  //   })
+  //   .catch((err) => console.log(err));
 };
