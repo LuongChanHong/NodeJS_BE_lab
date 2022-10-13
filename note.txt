@@ -1,5 +1,5 @@
 Nội dung app:
-- update item trên database bằng sequelize
+- xóa item trên database bằng sequelize
 
 Set up server app: 
 - Tạo file package.json: npm init

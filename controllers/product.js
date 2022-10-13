@@ -75,3 +75,14 @@ exports.postEditProduct = (request, response) => {
   //   })
   //   .catch((err) => console.log(err));
 };
+
+exports.deleteProduct = (request, response) => {
+  const productID = request.body.id;
+  Product.findByPk(productID)
+    .then((result) => {
+      result.destroy();
+      response.end();
+    })
+    .catch((err) => console.log("err:", err));
+  console.log("productID:", productID);
+};
