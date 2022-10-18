@@ -1,5 +1,7 @@
 Nội dung app:
-- xóa item trên database bằng sequelize   
+- thêm cart, order model
+- thêm cart, order item vào database
+
 
 Set up server app: 
 - Tạo file package.json: npm init

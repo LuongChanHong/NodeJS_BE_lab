@@ -12,6 +12,7 @@ exports.getProducts = (request, response) => {
   Product.findAll()
     .then((data) => {
       if (data) {
+        // console.log("data:", data);
         const result = resultFilter(data);
         response.send(result);
       } else {
@@ -21,27 +22,33 @@ exports.getProducts = (request, response) => {
     })
     .catch((err) => console.log("err:", err));
 };
+
 exports.postAddProduct = (request, response) => {
-  // const product = new Product(
-  //   request.body.title,
-  //   request.body.description,
-  //   request.body.price
-  // );
-  // product.add();
-  Product.create({
-    title: request.body.title,
-    price: request.body.price,
-    imageUrl: request.body.imageUrl,
-    description: request.body.description,
-  })
+  // Product.create({
+  //   title: request.body.title,
+  //   price: request.body.price,
+  //   imageUrl: request.body.imageUrl,
+  //   description: request.body.description,
+  // })
+  //   .then((result) => console.log("result:", result))
+  //   .catch((err) => console.log("err:", err));
+  // console.log(" request.user:", request.user);
+  request.user
+    .createProduct({
+      title: request.body.title,
+      imageUrl: request.body.imageUrl,
+      price: request.body.price,
+      description: request.body.description,
+    })
     .then((result) => console.log("result:", result))
     .catch((err) => console.log("err:", err));
 };
 
 exports.getEditProduct = (request, response) => {
-  const productID = parseInt(request.query.id);
+  const productID = request.query.id;
   // console.log("productID:", productID);
-  Product.findAll({ where: { id: productID } })
+  request.user
+    .getProducts({ where: { id: productID } })
     .then((data) => {
       const result = resultFilter(data);
       response.send(result[0]);
@@ -55,25 +62,6 @@ exports.postEditProduct = (request, response) => {
   Product.update({ ...postProduct }, { where: { id: postProduct.id } }).catch(
     (err) => console.log("err:", err)
   );
-
-  // const prodId = req.body.productId;
-  // const updatedTitle = req.body.title;
-  // const updatedPrice = req.body.price;
-  // const updatedImageUrl = req.body.imageUrl;
-  // const updatedDesc = req.body.description;
-  // Product.findById(prodId)
-  //   .then((product) => {
-  //     product.title = updatedTitle;
-  //     product.price = updatedPrice;
-  //     product.description = updatedDesc;
-  //     product.imageUrl = updatedImageUrl;
-  //     return product.save();
-  //   })
-  //   .then((result) => {
-  //     console.log("UPDATED PRODUCT!");
-  //     res.redirect("/admin/products");
-  //   })
-  //   .catch((err) => console.log(err));
 };
 
 exports.deleteProduct = (request, response) => {
