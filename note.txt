@@ -1,6 +1,5 @@
 Nội dung app:
-- chỉnh sửa Product model dùng mongoDB
-- hiện danh sách product dùng mongoDB
+- update product dùng mongoDB
 "edit and render product list using mongoDB"
 
 Set up server app: 

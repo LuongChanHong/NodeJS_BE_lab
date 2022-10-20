@@ -1,3 +1,4 @@
+const mongodb = require("mongodb");
 const Product = require("../models/Product");
 
 exports.getProducts = (request, response) => {
@@ -14,7 +15,6 @@ exports.getProducts = (request, response) => {
 
 exports.getProduct = (request, response) => {
   const productID = request.query.id;
-
   Product.findByID(productID)
     .then((product) => {
       response.send(product);
@@ -32,25 +32,23 @@ exports.postAddProduct = (request, response) => {
   product.save();
 };
 
-// exports.getEditProduct = (request, response) => {
-//   const productID = request.query.id;
-//   // console.log("productID:", productID);
-//   request.user
-//     .getProducts({ where: { id: productID } })
-//     .then((data) => {
-//       const result = resultFilter(data);
-//       response.send(result[0]);
-//     })
-//     .catch((err) => console.log("err:", err));
-// };
-
-// exports.postEditProduct = (request, response) => {
-//   const postProduct = request.body;
-//   // console.log("postProduct:", postProduct);
-//   Product.update({ ...postProduct }, { where: { id: postProduct.id } }).catch(
-//     (err) => console.log("err:", err)
-//   );
-// };
+exports.postEditProduct = (request, response) => {
+  const postProduct = request.body;
+  // console.log("postProduct:", postProduct);
+  const product = new Product(
+    postProduct.title,
+    postProduct.price,
+    postProduct.description,
+    postProduct.imageUrl,
+    new mongodb.ObjectId(postProduct._id)
+  );
+  product
+    .save()
+    .then((result) => {
+      console.log("result:", result);
+    })
+    .catch((err) => console.log("err:", err));
+};
 
 // exports.deleteProduct = (request, response) => {
 //   const productID = request.body.id;
