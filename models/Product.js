@@ -1,73 +1,46 @@
-const Sequelize = require("sequelize");
+const mongodb = require("mongodb");
+const getDB = require("../util/db").getDB;
 
-const sequelize = require("../util/db");
+class Product {
+  constructor(title, price, description, imageUrl) {
+    this.title = title;
+    this.price = price;
+    this.description = description;
+    this.imageUrl = imageUrl;
+  }
+  save() {
+    const db = getDB();
+    db.collection("products")
+      .insertOne(this)
+      .then((result) => {
+        console.log("result:", result);
+      })
+      .catch((err) => console.log("err:", err));
+  }
 
-const Product = sequelize.define("product", {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    allowNull: false,
-    primaryKey: true,
-  },
-  title: Sequelize.STRING,
-  price: { type: Sequelize.DOUBLE, allowNull: false },
-  imageUrl: { type: Sequelize.STRING, allowNull: false },
-  description: { type: Sequelize.STRING, allowNull: false },
-});
+  static fetchALL() {
+    const db = getDB();
+    return db
+      .collection("products")
+      .find()
+      .toArray()
+      .then((products) => {
+        return products;
+      })
+      .catch((err) => console.log("err:", err));
+  }
+
+  static findByID(id) {
+    const db = getDB();
+    return db
+      .collection("products")
+      .find({ _id: new mongodb.ObjectId(id) })
+      .next()
+      .then((product) => {
+        return product;
+      })
+      .catch((err) => console.log("err:", err));
+  }
+}
 
 module.exports = Product;
-
-// const db = require("../util/db");
-
-// const fs = require("fs");
-// const path = require("path");
-// const productsFolder = path.join(
-//   path.dirname(require.main.filename),
-//   "data",
-//   "products.json"
-// );
-// const getProductFromFile = (callback) => {
-//   fs.readFile(productsFolder, (error, fileContent) => {
-//     if (!error) {
-//       callback(JSON.parse(fileContent));
-//     } else {
-//       callback([]);
-//     }
-//   });
-// };
-
-// module.exports = class Product {
-//   constructor(title, description, price) {
-//     this.id = Math.random().toString();
-//     this.title = title;
-//     this.imageUrl =
-//       "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg";
-//     this.description = description;
-//     this.price = price;
-//   }
-
-// add() {}
-
-// static findById(id) {
-//   return db.execute("SELECT * FROM products WHERE products.id = ?", [id]);
-// }
-
-// static fetchAll() {
-//   return db.execute("SELECT * FROM products");
-// }
-
-//   add() {
-//     getProductFromFile((products) => {
-//       products.push(this);
-//       fs.writeFile(productsFolder, JSON.stringify(products), (error) => {
-//         if (error) {
-//           console.log("error:", error);
-//         }
-//       });
-//     });
-//   }
-
-//   static fetchAll(callback) {
-//     getProductFromFile(callback);
-//   }
-// };

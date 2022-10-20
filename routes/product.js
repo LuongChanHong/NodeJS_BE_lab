@@ -8,10 +8,11 @@ const productController = require("../controllers/product");
 //   console.log("products:", products);
 // });
 
-router.get("/get-product", productController.getProducts);
+router.get("/get-products", productController.getProducts);
+router.get("/get-product", productController.getProduct);
 router.post("/add-product", productController.postAddProduct);
-router.get("/get-edit-product", productController.getEditProduct);
-router.post("/post-edit-product", productController.postEditProduct);
-router.post("/post-delete-product", productController.deleteProduct);
+// router.get("/get-edit-product", productController.getEditProduct);
+// router.post("/post-edit-product", productController.postEditProduct);
+// router.post("/post-delete-product", productController.deleteProduct);
 
 exports.route = router;
