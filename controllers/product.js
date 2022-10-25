@@ -4,13 +4,14 @@ const Product = require("../models/Product");
 exports.getProducts = (request, response) => {
   Product.fetchALL()
     .then((products) => {
-      if (!products || products.length === 0) {
+      if (products.length == 0) {
         response.statusMessage = "not found products";
         response.status(404).end();
+      } else {
+        response.send(products);
       }
-      response.send(products);
     })
-    .catch((err) => console.log("err:", err));
+    .catch((err) => console.log("err getProducts:", err));
 };
 
 exports.getProduct = (request, response) => {

@@ -38,7 +38,7 @@ class Product {
       .then((products) => {
         return products;
       })
-      .catch((err) => console.log("err:", err));
+      .catch((err) => console.log("err fetchALL:", err));
   }
 
   static findByID(id) {

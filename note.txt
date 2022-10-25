@@ -1,6 +1,6 @@
 Nội dung app:
-- update product dùng mongoDB
-"edit and render product list using mongoDB"
+- thêm item vào cart dùng mongoDB
+"add item to cart using mongoDB"
 
 Set up server app: 
 - Tạo file package.json: npm init
