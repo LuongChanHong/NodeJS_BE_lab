@@ -4,8 +4,8 @@ exports.addToCart = (request, response) => {
   const productID = request.body._id;
   request.user
     .addToCart(productID)
-    .then((result) => {
-      console.log("result:", result);
+    .then(() => {
+      response.end();
     })
     .catch((err) => console.log("err:", err));
 };
