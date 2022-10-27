@@ -2,7 +2,7 @@
 
 exports.addToCart = (request, response) => {
   const product = request.body;
-  console.log("product:", product);
+  // console.log("product:", product);
   request.user
     .addToCart(product)
     .then(() => {
@@ -13,7 +13,7 @@ exports.addToCart = (request, response) => {
 
 exports.getCartItem = (request, response) => {
   request.user
-    .populate("cart.items.productId")
+    .populate("cart.items.product")
     .then((user) => {
       if (user) {
         // console.log("user.cart.items:", user.cart.items);

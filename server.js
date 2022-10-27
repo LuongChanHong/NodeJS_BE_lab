@@ -3,7 +3,7 @@ const cors = require("cors");
 // const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
-const mongodb = require("./util/db");
+// const mongodb = require("./util/db");
 
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
@@ -28,7 +28,7 @@ app.use((request, response, next) => {
 
 app.use(productRoute.route);
 app.use(cartRoute.route);
-// app.use(orderRoute.route);
+app.use(orderRoute.route);
 
 // app.get("/test", (request, response, next) => {
 //   response.write("<h1>SERVER RUN</h1>");

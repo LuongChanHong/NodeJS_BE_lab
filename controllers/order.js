@@ -1,48 +1,52 @@
-// const Order = require("../models/Order");
+const Order = require("../models/Order");
 
-// exports.createOrder = (request, response) => {
-//   let _cart;
-//   request.user
-//     .getCart()
-//     .then((cart) => {
-//       _cart = cart;
-//       return cart.getProducts();
-//     })
-//     .then((products) => {
-//       // tạo order từ tất cả item trong cart
-//       request.user
-//         .createOrder()
-//         .then((order) => {
-//           return order.addProducts(
-//             products.map((product) => {
-//               product.orderItem = { quantity: product.cartItem.quantity };
-//               return product;
-//               // return { ...product, quantity: product.cartItem.quantity };
-//             })
-//           );
-//         })
-//         .catch((err) => console.log(err));
-//     })
-//     .then(() => {
-//       _cart.setProducts(null);
-//     })
-//     .catch((err) => console.log(err));
-// };
+exports.createOrder = (request, response) => {
+  request.user
+    .populate("cart.items.product")
+    .then((user) => {
+      const orderProducts = [];
+      if (user) {
+        user.cart.items.forEach((item) => {
+          const newItems = { product: item.product, quantity: item.quantity };
+          orderProducts.push(newItems);
+        });
+        const order = new Order({
+          products: orderProducts,
+          user: { name: user.name, userId: user._id },
+        });
+        order.save();
+        user.cart.items = [];
+        user.save();
+      }
+    })
+    .catch((err) => console.log("err:", err));
+};
 
-// exports.getOrder = (request, response) => {
-//   request.user
-//     .getOrders()
-//     .then((orders) => {
-//       return orders.map((order) => {
-//         return order.getProducts();
-//       });
-//     })
-//     .then((productPromise) => {
-//       Promise.all(productPromise)
-//         .then((result) => {
-//           response.send(result);
-//         })
-//         .catch((err) => console.log("err:", err));
-//     })
-//     .catch((err) => console.log("err:", err));
-// };
+exports.getOrder = (request, response) => {
+  Order.find()
+    .then((orders) => {
+      if (orders.length == 0) {
+        console.log("orders:", orders);
+        // response.statusMessage = "not found orders";
+        // response.status(404).end();
+      } else {
+        response.send(orders);
+      }
+    })
+    .catch((err) => console.log("err:", err));
+  // request.user
+  //   .getOrders()
+  //   .then((orders) => {
+  //     return orders.map((order) => {
+  //       return order.getProducts();
+  //     });
+  //   })
+  //   .then((productPromise) => {
+  //     Promise.all(productPromise)
+  //       .then((result) => {
+  //         response.send(result);
+  //       })
+  //       .catch((err) => console.log("err:", err));
+  //   })
+  //   .catch((err) => console.log("err:", err));
+};

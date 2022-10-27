@@ -14,8 +14,8 @@ const userSchema = new Schema({
   cart: {
     items: [
       {
-        productId: {
-          type: mongoose.Types.ObjectId,
+        product: {
+          type: Object,
           ref: "Product", // mongoose relation
           require: true,
         },
@@ -29,14 +29,14 @@ userSchema.methods.addToCart = function (product) {
   // trường hợp user đã có object cart
   if (this.cart) {
     const index = this.cart.items.findIndex(
-      (item) => item.productId.toString() === product._id.toString()
+      (item) => item.product._id.toString() === product._id.toString()
     );
     const updateItems = [...this.cart.items];
     if (index >= 0) {
       updateItems[index].quantity = updateItems[index].quantity + 1;
     } else {
       updateItems.push({
-        productId: product._id,
+        product: product,
         quantity: 1,
       });
     }
@@ -45,7 +45,7 @@ userSchema.methods.addToCart = function (product) {
     };
     // trường hợp user chưa có object cart
   } else {
-    this.cart = { items: [{ productId: product._id, quantity: 1 }] };
+    this.cart = { items: [{ product: product, quantity: 1 }] };
   }
   return this.save();
 };
