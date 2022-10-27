@@ -25,28 +25,12 @@ exports.createOrder = (request, response) => {
 exports.getOrder = (request, response) => {
   Order.find()
     .then((orders) => {
-      if (orders.length == 0) {
-        console.log("orders:", orders);
-        // response.statusMessage = "not found orders";
-        // response.status(404).end();
-      } else {
+      if (orders.length != 0) {
         response.send(orders);
+      } else {
+        response.statusMessage = "not found orders";
+        response.status(404).end();
       }
     })
     .catch((err) => console.log("err:", err));
-  // request.user
-  //   .getOrders()
-  //   .then((orders) => {
-  //     return orders.map((order) => {
-  //       return order.getProducts();
-  //     });
-  //   })
-  //   .then((productPromise) => {
-  //     Promise.all(productPromise)
-  //       .then((result) => {
-  //         response.send(result);
-  //       })
-  //       .catch((err) => console.log("err:", err));
-  //   })
-  //   .catch((err) => console.log("err:", err));
 };

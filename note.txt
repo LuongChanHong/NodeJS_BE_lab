@@ -1,6 +1,6 @@
 Nội dung app:
-- thêm order sử dụng mongoose
-"add order using mongoose"
+- hiển thị danh sách order sử dụng mongoose
+"render order list using mongoose"
 
 Set up server app: 
 - Tạo file package.json: npm init

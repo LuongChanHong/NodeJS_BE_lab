@@ -1,5 +1,3 @@
-// const Product = require("../models/Product");
-
 exports.addToCart = (request, response) => {
   const product = request.body;
   // console.log("product:", product);
