@@ -1,6 +1,6 @@
 Nội dung app:
-- xóa product item sử dụng mongoose
-"delete product item using mongoose"
+- thêm cart item sử dụng mongoose
+"add cart item using mongoose"
 
 Set up server app: 
 - Tạo file package.json: npm init
