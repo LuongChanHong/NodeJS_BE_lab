@@ -23,7 +23,7 @@ exports.createOrder = (request, response) => {
 };
 
 exports.getOrder = (request, response) => {
-  Order.find()
+  Order.find({ "user.userId": request.user._id })
     .then((orders) => {
       if (orders.length != 0) {
         response.send(orders);
