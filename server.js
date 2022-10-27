@@ -27,8 +27,8 @@ app.use((request, response, next) => {
 });
 
 app.use(productRoute.route);
-app.use(cartRoute.route);
-app.use(orderRoute.route);
+// app.use(cartRoute.route);
+// app.use(orderRoute.route);
 
 // app.get("/test", (request, response, next) => {
 //   response.write("<h1>SERVER RUN</h1>");

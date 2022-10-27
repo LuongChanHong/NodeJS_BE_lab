@@ -53,13 +53,12 @@ exports.postEditProduct = (request, response) => {
     .catch((err) => console.log("::ERROR:", err));
 };
 
-// exports.deleteProduct = (request, response) => {
-//   const productID = request.body.id;
-//   Product.findByPk(productID)
-//     .then((result) => {
-//       result.destroy();
-//       response.end();
-//     })
-//     .catch((err) => console.log("err:", err));
-//   console.log("productID:", productID);
-// };
+exports.deleteProduct = (request, response) => {
+  const productID = request.body._id;
+  // console.log("request.body:", request.body);
+  Product.findByIdAndRemove(productID)
+    .then(() => {
+      response.end();
+    })
+    .catch((err) => console.log("err:", err));
+};
