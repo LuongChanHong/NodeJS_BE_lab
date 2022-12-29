@@ -1,15 +1,27 @@
 Nội dung app:
-- hiển thị danh sách order sử dụng mongoose
-"render order list using mongoose"
+- commit trước khi set cookie từ FE
+"commit before set cookie in FE"
 
 Set up server app: 
+- Cài nodemon: npm i express --save-dev
+
 - Tạo file package.json: npm init
+
+- Tạo file text .gitignore có nội dung:
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# dotenv environment variables file
+.env
 
 - Cài nodemon: npm i nodemon --save-dev 
 // -dev là do ta chỉ dùng nodemon trong lúc dựng app,
  giai đoạn production/ deploy thì không cần
 
-- Set up script khởi chạy: "start": "nodemon server.js",
+- Set up khởi chạy ("scripts"-package.json): "start": "nodemon server.js",
  
 - thêm file launch.json: RUN => add configuration => NodeJS
 
