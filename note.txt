@@ -1,6 +1,6 @@
 Nội dung app:
-- commit trước khi set cookie từ FE
-"commit before set cookie in FE"
+- setup môi trường login sử dụng express session 
+"setup login fearture environment using express session"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
