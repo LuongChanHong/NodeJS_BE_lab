@@ -44,15 +44,6 @@ app.use(
   })
 );
 
-app.use((request, response, next) => {
-  User.findById("6358f5856fed1c1ea865fd32")
-    .then((user) => {
-      request.user = user;
-      next();
-    })
-    .catch((err) => console.log("err:", err));
-});
-
 app.use(productRoute.route);
 app.use(cartRoute.route);
 app.use(orderRoute.route);
@@ -65,18 +56,6 @@ app.use(authRoute.route);
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    User.findOne()
-      .then((user) => {
-        if (!user) {
-          const user = new User({
-            name: "User",
-            email: "user@email.com",
-            cart: { items: [] },
-          });
-          user.save();
-        }
-      })
-      .catch((err) => console.log("::ERROR:", err));
     app.listen(5000);
   })
   .catch((err) => console.log("mongoose connect err:", err));

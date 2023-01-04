@@ -1,6 +1,6 @@
 Nội dung app:
-- setup môi trường login sử dụng express session 
-"setup login fearture environment using express session"
+- sửa lại chức năng đăng nhập, đăng xuất, đăng kí
+"fixed login, logout, signup fearture"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
