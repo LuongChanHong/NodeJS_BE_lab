@@ -12,10 +12,10 @@ exports.login = async (req, res) => {
   // console.log(reqData);
 
   const loginUser = await User.findOne({ email: reqData.email });
-  console.log("loginUser:", loginUser);
-  const isMatch = await comparePassword(reqData.password, loginUser.password);
+  // console.log("loginUser:", loginUser);
   // console.log("isMatch:", isMatch);
   if (loginUser !== null) {
+    const isMatch = await comparePassword(reqData.password, loginUser.password);
     if (isMatch) {
       req.session.isLoggedIn = true;
       res.send(req.session.isLoggedIn);
