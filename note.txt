@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 16.2 thêm UX thông báo lỗi trang login
-"lab 16.2 add UX error warning login page"
+- lab 17.1 thêm chức năng gửi mail đơn giản
+"lab 17.1 add send mail fearture"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev

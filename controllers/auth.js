@@ -1,7 +1,18 @@
 const bcrypt = require("bcryptjs");
-
+const nodemailer = require("nodemailer"); // node mail handler
+const sendgridTransport = require("nodemailer-sendgrid-transport"); // sendgrid free mail server
 const mongodb = require("mongodb");
+
 const User = require("../models/User");
+const transporter = nodemailer.createTransport(
+  sendgridTransport({
+    auth: {
+      api_user: "hongmainmail@gmail.com",
+      api_key:
+        "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", // key from sendgrid (page) user API Key fearture
+    },
+  })
+);
 
 const comparePassword = async (password, hashPassword) => {
   return await bcrypt.compare(password, hashPassword);
@@ -47,5 +58,12 @@ exports.signup = async (req, res) => {
     cart: { items: [] },
   });
   newUser.save();
+
+  await transporter.sendMail({
+    to: reqData.email,
+    from: "mail@gmail.com",
+    subject: "Signup Success",
+    html: "<h1>Signup Success</h1>",
+  });
   res.end();
 };
