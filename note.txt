@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 17.1 thêm chức năng gửi mail đơn giản
-"lab 17.1 add send mail fearture"
+- lab 17.2 thêm validation cho các form
+"lab 17.2 add form validation"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
