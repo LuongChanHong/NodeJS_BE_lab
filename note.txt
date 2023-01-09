@@ -1,6 +1,7 @@
 Nội dung app:
-- lab 17.2 thêm validation cho các form
-"lab 17.2 add form validation"
+- lab 17.2 update validation form đăng nhập đăng kí
+"lab 17.2 update login, sigup form validation"
+
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev

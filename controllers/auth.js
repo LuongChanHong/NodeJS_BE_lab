@@ -21,7 +21,7 @@ const comparePassword = async (password, hashPassword) => {
 
 exports.login = async (req, res) => {
   const reqData = req.body.data;
-  console.log(reqData);
+  // console.log(reqData);
   const errors = validationResult(req).array({ onlyFirstError: true });
   // console.log("errors:", errors);
   if (errors.length <= 0) {
@@ -51,17 +51,19 @@ exports.logout = (req, res) => {
 };
 
 exports.signup = async (req, res) => {
-  const reqData = req.body;
+  const reqData = req.body.data;
   const hashPass = await bcrypt.hash(reqData.password, 12);
   const errors = validationResult(req);
-  console.log("errors:", errors);
-  if (errors.length <= 0) {
+  // console.log("errors:", errors);
+  if (errors.errors.length <= 0) {
     const newUser = new User({
       email: reqData.email,
       password: hashPass,
       cart: { items: [] },
     });
-    // newUser.save();
+    // console.log("newUser:", newUser);
+    newUser.save();
+    res.end();
   } else {
     res.send(errors);
   }
@@ -74,5 +76,5 @@ exports.signup = async (req, res) => {
   //     html: "<h1>Signup Success</h1>",
   //   })
   //   .then((res) => console.log("res:", res));
-  res.end();
+  // res.end();
 };

@@ -26,7 +26,7 @@ router.post("/logout", authController.logout);
 router.post(
   "/signup",
   [
-    check("email")
+    body("data.email")
       .isEmail()
       .withMessage("Email invaliad") // custom error mess
       .custom(async (value) => {
@@ -38,17 +38,15 @@ router.post(
         });
       }),
     //   body("password", "Password can't empty and must more than 8 character") // custom err mess for all validation item link
-    body("password", "Password must more than 8 character") // custom err mess for all validation item link
+    body("data.password", "Password must more than 8 character") // custom err mess for all validation item link
       .isLength({ min: 8 }),
-    body("confirm")
-      .isEmpty()
-      .custom((value, { req }) => {
-        // custom valida with custom err mess
-        if (value != req.body.password) {
-          throw new Error("Confirm not match Password");
-        }
-        return true;
-      }),
+    body("data.confirm").custom((value, { req }) => {
+      // custom valida with custom err mess
+      if (value != req.body.data.password) {
+        throw new Error("Confirm not match Password");
+      }
+      return true;
+    }),
   ],
   authController.signup
 );

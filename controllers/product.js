@@ -31,7 +31,8 @@ exports.postAddProduct = (request, response) => {
     imageUrl: request.body.imageUrl,
     userId: request.user._id,
   });
-  product.save();
+  console.log("product:", product);
+  // product.save();
 };
 
 exports.postEditProduct = (request, response) => {
