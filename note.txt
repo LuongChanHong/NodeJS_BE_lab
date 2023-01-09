@@ -1,6 +1,7 @@
 Nội dung app:
-- lab 17.3 thêm validation form thêm sản phẩm mới
-"lab 17.3 add product form validation"
+- lab 17.4 thêm validation form chỉnh sửa sản phẩm
+"lab 17.4 edit product form validation"
+
 
 
 Set up server app: 

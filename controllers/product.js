@@ -43,23 +43,24 @@ exports.postAddProduct = (req, res) => {
   res.end();
 };
 
-exports.postEditProduct = (req, res) => {
-  const postProduct = req.body;
-  Product.findById(postProduct._id)
-    .then((product) => {
-      // console.log("product:", product);
-      // cách 1
-      // product.title = req.body.title;
-      // product.price = req.body.price;
-      // product.description = req.body.description;
-      // product.imageUrl = req.body.imageUrl;
-      // cách 2
+exports.postEditProduct = async (req, res) => {
+  const errors = validationResult(req).array({ onlyFirstError: true });
+  // console.log("errors:", errors);
+  if (errors.length <= 0) {
+    const postProduct = req.body;
+    // console.log("postProduct:", postProduct);
+    const product = await Product.findById(postProduct._id);
+    // console.log("product:", product);
+    if (product) {
       for (let postProperty in postProduct) {
         product[`${postProperty}`] = postProduct[`${postProperty}`];
       }
       product.save();
-    })
-    .catch((err) => console.log("::ERROR:", err));
+    }
+  } else {
+    res.send(errors);
+  }
+  res.end();
 };
 
 exports.deleteProduct = (req, res) => {
