@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 17.2 update validation form đăng nhập đăng kí
-"lab 17.2 update login, sigup form validation"
+- lab 17.3 thêm validation form thêm sản phẩm mới
+"lab 17.3 add product form validation"
 
 
 Set up server app: 
