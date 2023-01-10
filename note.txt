@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 17.4 thêm validation form chỉnh sửa sản phẩm
-"lab 17.4 edit product form validation"
+- lab 18.1 cập nhập xử lí lỗi cho tất cả middleware
+"lab 18.1 update error handler for all middleware"
 
 
 

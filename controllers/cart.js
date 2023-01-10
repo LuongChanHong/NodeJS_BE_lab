@@ -1,33 +1,41 @@
-exports.addToCart = (request, response) => {
-  const product = request.body;
-  // console.log("product:", product);
-  request.user
-    .addToCart(product)
-    .then(() => {
-      response.end();
-    })
-    .catch((err) => console.log("err:", err));
+exports.addToCart = async (req, res, next) => {
+  try {
+    const product = req.body;
+    // console.log("product:", product);
+    req.user
+      .addToCart(product)
+      .then(() => {
+        res.end();
+      })
+      .catch((err) => console.log("err:", err));
+  } catch (error) {
+    return next(new Error(error));
+  }
 };
 
-exports.getCartItem = (request, response) => {
-  request.user
-    .populate("cart.items.product")
-    .then((user) => {
-      if (user) {
-        // console.log("user.cart.items:", user.cart.items);
-        response.send(user.cart.items);
-      } else {
-        response.statusMessage = "cart is empty";
-        response.status(404).end();
-      }
-    })
-    .catch((err) => console.log("err:", err));
+exports.getCartItem = async (req, res, next) => {
+  try {
+    req.user
+      .populate("cart.items.product")
+      .then((user) => {
+        if (user) {
+          // console.log("user.cart.items:", user.cart.items);
+          res.send(user.cart.items);
+        } else {
+          res.statusMessage = "cart is empty";
+          res.status(404).end();
+        }
+      })
+      .catch((err) => console.log("err:", err));
+  } catch (error) {
+    return next(new Error(error));
+  }
 };
 
-// exports.deleteCartItem = (request, response) => {
-//   const productsID = request.body.id;
+// exports.deleteCartItem = (req, res) => {
+//   const productsID = req.body.id;
 //   // console.log("productsID:", productsID);
-//   request.user
+//   req.user
 //     .getCart()
 //     .then((cart) => {
 //       return cart.getProducts({ where: { id: productsID } });

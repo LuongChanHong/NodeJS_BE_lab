@@ -53,6 +53,12 @@ app.use(authRoute.route);
 //   response.write("<h1>SERVER RUN</h1>");
 // });
 
+app.use((error, req, res, next) => {
+  console.log("ERROR HANDLER::", error);
+  res.statusMessage = "Something go wrong";
+  res.status(500).send({ message: "Something go wrong" });
+});
+
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
