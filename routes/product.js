@@ -23,7 +23,7 @@ router.post(
       .trim()
       .matches(/^[a-zA-Z0-9 ]+$/i)
       .isLength({ min: 3 }),
-    body("imageUrl", "Image url can't be empty").notEmpty().trim(),
+    // body("imageUrl", "Image url can't be empty").notEmpty().trim(),
     body("price", "Price must be real number").isInt(),
     body("description", "Description at least 5 character")
       .trim()
@@ -38,7 +38,7 @@ router.post(
       .trim()
       .matches(/^[a-zA-Z0-9 ]+$/i)
       .isLength({ min: 3 }),
-    body("imageUrl", "Image url can't be empty").notEmpty().trim(),
+    // body("imageUrl", "Image url can't be empty").notEmpty().trim(),
     body("price", "Price must be real number").isInt(),
     body("description", "Description at least 5 character")
       .trim()
@@ -47,5 +47,6 @@ router.post(
   productController.postEditProduct
 );
 router.post("/post-delete-product", productController.deleteProduct);
+router.get("/images", productController.getImage);
 
 exports.route = router;

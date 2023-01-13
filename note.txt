@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 18.1 cập nhập xử lí lỗi cho tất cả middleware
-"lab 18.1 update error handler for all middleware"
+- lab 19.1 tạo và tải về file pdf order
+"lab 19.1 create, download order pdf file"
 
 
 

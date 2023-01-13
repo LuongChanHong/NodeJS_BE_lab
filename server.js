@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-// const bodyParser = require("body-parser");
+const path = require("path");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const mongoDBStore = require("connect-mongodb-session")(session);
+const multer = require("multer");
 
 // const mongodb = require("./util/db");
 
@@ -25,6 +27,42 @@ const sessionStore = new mongoDBStore({
   expires: true,
 });
 
+const now =
+  new Date().getDate().toString() +
+  "." +
+  new Date().getMonth().toString() +
+  1 +
+  "." +
+  new Date().getFullYear().toString();
+
+const fileStorage = multer.diskStorage({
+  // function tell multer error and where to stora file
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  // function tell multer error and how to name upcoming file
+  // filename: (req, file, cb) => {
+  //   cb(null, file.filename + "-" + file.originalname);
+  // },
+  filename: (req, file, cb) => {
+    cb(null, now + "-" + file.originalname);
+  },
+});
+
+// tell multer that no error (null) and accept there type of file to store
+const fileFilters = (req, file, cb) => {
+  // console.log("file.mimetype:", file.mimetype);
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -34,6 +72,11 @@ app.use(
 // app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  multer({ storage: fileStorage, fileFilter: fileFilters }).single("image")
+);
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(express.json());
 app.use(
   session({
@@ -54,6 +97,7 @@ app.use(authRoute.route);
 // });
 
 app.use((error, req, res, next) => {
+  console.log("=====================");
   console.log("ERROR HANDLER::", error);
   res.statusMessage = "Something go wrong";
   res.status(500).send({ message: "Something go wrong" });
