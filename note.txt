@@ -1,8 +1,6 @@
 Nội dung app:
-- lab 19.1 tạo và tải về file pdf order
-"lab 19.1 create, download order pdf file"
-
-
+- lab 20.1 xóa product item bằng thao tác với DOM
+"lab 20.1 delele product item by DOM manipulation"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
