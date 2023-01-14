@@ -10,9 +10,6 @@ const multer = require("multer");
 
 // const mongodb = require("./util/db");
 
-const productRoute = require("./routes/product");
-const cartRoute = require("./routes/cart");
-const orderRoute = require("./routes/order");
 const authRoute = require("./routes/auth");
 
 const MONGODB_URI =

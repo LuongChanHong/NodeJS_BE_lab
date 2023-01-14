@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 20.1 xóa product item bằng thao tác với DOM
-"lab 20.1 delele product item by DOM manipulation"
+- lab 21.1 xóa các phần không cần thiết
+"lab 21.1 delete unnecessary parts"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
