@@ -71,7 +71,6 @@ exports.signup = async (req, res, next) => {
       const newUser = new User({
         email: reqData.email,
         password: hashPass,
-        cart: { items: [] },
       });
       // console.log("newUser:", newUser);
       newUser.save();
@@ -79,16 +78,6 @@ exports.signup = async (req, res, next) => {
     } else {
       res.send(errors);
     }
-
-    // transporter
-    //   .sendMail({
-    //     to: reqData.email,
-    //     from: "mail@gmail.com",
-    //     subject: "Signup Success",
-    //     html: "<h1>Signup Success</h1>",
-    //   })
-    //   .then((res) => console.log("res:", res));
-    // res.end();
   } catch (error) {
     return next(new Error(error));
   }

@@ -11,6 +11,7 @@ const multer = require("multer");
 // const mongodb = require("./util/db");
 
 const authRoute = require("./routes/auth");
+const postRoute = require("./routes/post");
 
 const MONGODB_URI =
   "mongodb+srv://mongodb_admin:mongodb_admin@cluster0.e6b0l5j.mongodb.net/socialNetwork?retryWrites=true&w=majority";
@@ -83,10 +84,8 @@ app.use(
   })
 );
 
-app.use(productRoute.route);
-app.use(cartRoute.route);
-app.use(orderRoute.route);
 app.use(authRoute.route);
+app.use(postRoute.route);
 
 // app.get("/test", (request, response, next) => {
 //   response.write("<h1>SERVER RUN</h1>");

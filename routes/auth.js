@@ -40,13 +40,6 @@ router.post(
     //   body("password", "Password can't empty and must more than 8 character") // custom err mess for all validation item link
     body("data.password", "Password must more than 8 character") // custom err mess for all validation item link
       .isLength({ min: 8 }),
-    body("data.confirm").custom((value, { req }) => {
-      // custom valida with custom err mess
-      if (value != req.body.data.password) {
-        throw new Error("Confirm not match Password");
-      }
-      return true;
-    }),
   ],
   authController.signup
 );
