@@ -13,8 +13,7 @@ const multer = require("multer");
 const authRoute = require("./routes/auth");
 
 const MONGODB_URI =
-  "mongodb+srv://mongodb_admin:mongodb_admin@cluster0.e6b0l5j.mongodb.net/shop?retryWrites=true&w=majority";
-
+  "mongodb+srv://mongodb_admin:mongodb_admin@cluster0.e6b0l5j.mongodb.net/socialNetwork?retryWrites=true&w=majority";
 const User = require("./models/User");
 
 const app = express();

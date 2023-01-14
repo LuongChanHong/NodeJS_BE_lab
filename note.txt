@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 21.1 xóa các phần không cần thiết
-"lab 21.1 delete unnecessary parts"
+- lab 21.1 thêm các component chính
+"lab 21.1 add main components"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
