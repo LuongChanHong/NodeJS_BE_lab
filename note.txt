@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 21.1 thêm các component chính
-"lab 21.1 add main components"
+- lab 21.1 thêm chức năng chỉnh sửa và xóa post
+"lab 21.1 add edit and delete post feature"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev

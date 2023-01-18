@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const mongoDBStore = require("connect-mongodb-session")(session);
 const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
 
 // const mongodb = require("./util/db");
 
@@ -38,11 +39,9 @@ const fileStorage = multer.diskStorage({
     cb(null, "images");
   },
   // function tell multer error and how to name upcoming file
-  // filename: (req, file, cb) => {
-  //   cb(null, file.filename + "-" + file.originalname);
-  // },
   filename: (req, file, cb) => {
-    cb(null, now + "-" + file.originalname);
+    // cb(null, now + "-" + file.originalname);
+    cb(null, uuidv4());
   },
 });
 
@@ -60,12 +59,23 @@ const fileFilters = (req, file, cb) => {
   }
 };
 
+app.use("/images", express.static(path.join(__dirname, "images")));
+
 app.use(
   cors({
     origin: "http://localhost:3000",
     credentials: true,
   })
 );
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET,POST,PUT,PATH,DELETE,OPTIONS"
+//   );
+//   res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
+//   next();
+// });
 // app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
