@@ -67,15 +67,17 @@ app.use(
     credentials: true,
   })
 );
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET,POST,PUT,PATH,DELETE,OPTIONS"
-//   );
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
-//   next();
-// });
+app.use("/", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Authorization");
+  // res.setHeader("Access-Control-Allow-Headers", "X-Requested-With");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,POST,PUT,PATH,DELETE,OPTIONS"
+  );
+  next();
+});
 // app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cookieParser());
@@ -111,6 +113,10 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    app.listen(5000);
+    const server = app.listen(5000);
+    const io = require("./socket").init(server);
+    io.on("connection", (socket) => {
+      console.log("SOCKET IO CONNECTED");
+    });
   })
   .catch((err) => console.log("mongoose connect err:", err));

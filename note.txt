@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 21.1 thêm chức năng chỉnh sửa và xóa post
-"lab 21.1 add edit and delete post feature"
+- lab 22.1 cập nhập lại post bằng socket.io (real-time)
+"lab 22.1 update post by socket.io (real-time)"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev

@@ -1,8 +1,9 @@
 const Post = require("../models/Post");
 const fs = require("fs");
-const { default: mongoose } = require("mongoose");
 
-exports.createNewPost = (req, res, next) => {
+const io = require("../socket");
+
+exports.createNewPost = async (req, res, next) => {
   try {
     const reqData = req.body;
     const reqFile = req.file;
@@ -18,7 +19,9 @@ exports.createNewPost = (req, res, next) => {
       image: image,
       updatedAt: new Date(),
     });
-    newPost.save();
+    await newPost.save();
+    // const posts = await Post.find();
+    io.getIO().emit("posts", { action: "newPost", post: newPost });
     res.end();
   } catch (error) {
     return next(new Error(error));
@@ -81,13 +84,11 @@ exports.editPost = async (req, res, next) => {
   try {
     const reqFile = req.file;
     const reqData = req.body;
-    console.log("reqData:", reqData);
-    console.log("reqFile:", reqFile);
     // console.log("reqData:", reqData);
     // console.log("reqFile:", reqFile);
     const imagePath = reqFile ? reqFile.path.replace("\\", "/") : reqData.image;
     // console.log("image:", image);
-    const editedPost = {
+    let editedPost = {
       title: reqData.title,
       content: reqData.content,
       image: imagePath,
@@ -95,6 +96,8 @@ exports.editPost = async (req, res, next) => {
     };
 
     await Post.findByIdAndUpdate(reqData._id, editedPost);
+    editedPost = await Post.findById(reqData._id);
+    io.getIO().emit("posts", { action: "updatePost", post: editedPost });
     res.end();
   } catch (error) {
     return next(new Error(error));
