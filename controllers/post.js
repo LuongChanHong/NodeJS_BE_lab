@@ -73,6 +73,7 @@ exports.deletePost = async (req, res, next) => {
       fs.unlinkSync(post.image);
     }
     await Post.findByIdAndDelete(id);
+    io.getIO().emit("posts", { action: "deletePost", post: id });
 
     res.end();
   } catch (error) {
