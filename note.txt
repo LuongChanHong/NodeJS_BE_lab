@@ -1,6 +1,6 @@
 Nội dung app:
-- thêm file vercel.json để deploy server express
-"add vercel.json file to deploy express server"
+- thêm testing path
+"add testing path"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
