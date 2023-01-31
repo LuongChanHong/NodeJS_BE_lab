@@ -1,6 +1,6 @@
 Nội dung app:
-- lab 22.2 xóa post bằng socket.io (real-time)
-"lab 22.2 delete post by socket.io (real-time)"
+- thêm file vercel.json để deploy server express
+"add vercel.json file to deploy express server"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
