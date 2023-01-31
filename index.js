@@ -94,8 +94,8 @@ app.use(
 app.use(authRoute.route);
 app.use(postRoute.route);
 
-app.get("/", (request, response, next) => {
-  response.write("<h1>SERVER RUN</h1>");
+app.get("/", (req, res, next) => {
+  res.send({ status: 200, msg: "Testing success" });
 });
 
 app.use((error, req, res, next) => {
