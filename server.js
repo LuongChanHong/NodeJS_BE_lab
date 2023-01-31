@@ -7,6 +7,8 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const mongoDBStore = require("connect-mongodb-session")(session);
 const multer = require("multer");
+const helmet = require("helmet");
+const compression = require("compression");
 const { v4: uuidv4 } = require("uuid");
 
 // const mongodb = require("./util/db");
@@ -14,24 +16,17 @@ const { v4: uuidv4 } = require("uuid");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/post");
 
-const MONGODB_URI =
-  "mongodb+srv://mongodb_admin:mongodb_admin@cluster0.e6b0l5j.mongodb.net/socialNetwork?retryWrites=true&w=majority";
-const User = require("./models/User");
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.e6b0l5j.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`;
 
 const app = express();
+
+app.use(helmet());
+app.use(compression());
 const sessionStore = new mongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
   expires: true,
 });
-
-const now =
-  new Date().getDate().toString() +
-  "." +
-  new Date().getMonth().toString() +
-  1 +
-  "." +
-  new Date().getFullYear().toString();
 
 const fileStorage = multer.diskStorage({
   // function tell multer error and where to stora file
@@ -113,7 +108,7 @@ app.use((error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then(() => {
-    const server = app.listen(5000);
+    const server = app.listen(process.env.PORT || 5000);
     const io = require("./socket").init(server);
     io.on("connection", (socket) => {
       console.log("SOCKET IO CONNECTED");

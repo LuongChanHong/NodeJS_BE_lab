@@ -11,7 +11,7 @@ exports.createNewPost = async (req, res, next) => {
     // console.log("reqData:", reqData);
     // console.log("reqFile:", reqFile);
     const image = reqFile.path.replace("\\", "/");
-    // console.log("image:", image);
+    console.log("image:", image);
 
     const newPost = new Post({
       title: reqData.title,
