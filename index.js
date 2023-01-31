@@ -94,13 +94,13 @@ app.use(
 app.use(authRoute.route);
 app.use(postRoute.route);
 
-app.get("/", (req, res, next) => {
-  try {
-    res.json({ status: 200, message: "Testing success" });
-  } catch (error) {
-    return next(new Error(error));
-  }
-});
+// app.get("/", (req, res, next) => {
+//   try {
+//     res.json({ status: 200, message: "Testing success" });
+//   } catch (error) {
+//     return next(new Error(error));
+//   }
+// });
 
 app.use((error, req, res, next) => {
   console.log("=====================");
