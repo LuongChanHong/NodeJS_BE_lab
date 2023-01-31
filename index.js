@@ -95,7 +95,11 @@ app.use(authRoute.route);
 app.use(postRoute.route);
 
 app.get("/", (req, res, next) => {
-  res.send({ status: 200, msg: "Testing success" });
+  try {
+    res.json({ status: 200, message: "Testing success" });
+  } catch (error) {
+    return next(new Error(error));
+  }
 });
 
 app.use((error, req, res, next) => {
