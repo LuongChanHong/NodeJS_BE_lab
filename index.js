@@ -91,16 +91,19 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  try {
+    res.json({
+      status: 200,
+      msg: "GET DATA SUCCESS",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("SERVER ERROR");
+  }
+});
 app.use(authRoute.route);
 app.use(postRoute.route);
-
-// app.get("/", (req, res, next) => {
-//   try {
-//     res.json({ status: 200, message: "Testing success" });
-//   } catch (error) {
-//     return next(new Error(error));
-//   }
-// });
 
 app.use((error, req, res, next) => {
   console.log("=====================");
