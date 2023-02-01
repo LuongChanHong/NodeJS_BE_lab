@@ -4,7 +4,7 @@ const { check, body } = require("express-validator");
 
 const User = require("../models/User");
 const authController = require("../controllers/auth");
-router.get("/", async (req, res) => {
+router.get("/api/testing", async (req, res) => {
   try {
     res.json({
       status: 200,
