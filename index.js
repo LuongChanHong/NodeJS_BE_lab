@@ -92,7 +92,7 @@ app.use(
 );
 
 app.use(authRoute.route);
-app.use(postRoute.route);
+// app.use(postRoute.route);
 
 app.use((error, req, res, next) => {
   console.log("=====================");
