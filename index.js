@@ -16,9 +16,9 @@ const { v4: uuidv4 } = require("uuid");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/post");
 
-console.log("value:", process.env.MONGO_USER);
-console.log("value:", process.env.MONGO_PASSWORD);
-console.log("value:", process.env.MONGO_DATABASE);
+console.log("MONGO_USER:", process.env.MONGO_USER);
+console.log("MONGO_PASSWORD:", process.env.MONGO_PASSWORD);
+console.log("MONGO_DATABASE:", process.env.MONGO_DATABASE);
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.e6b0l5j.mongodb.net/${process.env.MONGO_DATABASE}?retryWrites=true&w=majority`;
 
