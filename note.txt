@@ -1,6 +1,6 @@
 Nội dung app:
-- thêm testing path
-"add testing path"
+- triển khai server lên vercel cloud
+"lab23.1 deploy on vercel cloud"
 
 Set up server app: 
 - Cài nodemon: npm i express --save-dev
