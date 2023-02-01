@@ -4,7 +4,17 @@ const { check, body } = require("express-validator");
 
 const User = require("../models/User");
 const authController = require("../controllers/auth");
-
+router.get("/", (req, res) => {
+  try {
+    res.json({
+      status: 200,
+      msg: "GET DATA SUCCESS",
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("SERVER ERROR");
+  }
+});
 router.post(
   "/login",
   [
