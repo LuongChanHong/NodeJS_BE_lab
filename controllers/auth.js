@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer"); // node mail handler
 const sendgridTransport = require("nodemailer-sendgrid-transport"); // sendgrid free mail server
-const mongodb = require("mongodb");
+// const mongodb = require("mongodb");
 const { validationResult } = require("express-validator");
 
 const User = require("../models/User");

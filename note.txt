@@ -9,7 +9,6 @@ Set up server app:
 
 - Tạo file text .gitignore có nội dung:
 # Dependency directories
-node_modules/
 
 # Optional npm cache directory
 .npm
